@@ -1,66 +1,151 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📄 Sistema de Gestión de Facturación Electrónica — Laravel + React + Inertia
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este proyecto es una plataforma de gestión de facturación electrónica desarrollada con **Laravel 12**, **React** e **Inertia.js**, basada en el [starter kit oficial de Laravel](https://laravel.com/docs/starter-kits).
 
-## About Laravel
+Está diseñado para conectarse e interactuar directamente con la API de [Factus](https://developers.factus.com.co/) de la empresa [Halltec](https://halltec.co/), permitiendo la creación, consulta, y visualización de facturas electrónicas, así como el consumo de múltiples endpoints adicionales.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🚀 Características principales
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- 🔐 **Autenticación OAuth2** completamente integrada con la API de Factus
+- 🧾 **Listado, búsqueda, show de facturas**, visualización de PDF y XML directamente desde Factus
+- 🛠️ **Módulo de pruebas (Factus Test)** tipo POS para simular peticiones a los endpoints
+- 👥 Gestión local de **clientes y productos** desde tu propia base de datos
+- 🧾 **Creación de facturas electrónicas** y consumo directo de los servicios de Factus
+- 🧩 Interfaz moderna y fluida usando **React + Inertia.js**
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 📂 Estructura general del proyecto
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```bash
+.
+├── app/
+│   ├── Console/           # Comandos Artisan personalizados
+│   ├── Exceptions/        # Manejo de excepciones
+│   ├── Http/
+│   │   ├── Controllers/   # Controladores HTTP (Clientes, Productos, Facturas, etc.)
+│   │   ├── Middleware/    # Middlewares de la aplicación
+│   │   └── Requests/      # Validaciones personalizadas (Form Requests)
+│   ├── Models/            # Modelos Eloquent
+│   └── Providers/         # Proveedores de servicios
+│
+├── bootstrap/             # Arranque de Laravel
+├── config/                # Archivos de configuración
+├── database/
+│   ├── factories/         # Fabricantes para pruebas
+│   ├── migrations/        # Migraciones de base de datos
+│   └── seeders/           # Seeders para poblar datos
+│
+├── public/                # Punto de entrada público (index.php)
+├── resources/
+│   ├── js/                # Código React + Inertia.js
+│   │   ├── Pages/         # Vistas React (Clientes, Facturas, Dashboard, etc.)
+│   │   └── Components/    # Componentes reutilizables en React
+│   ├── lang/              # Archivos de traducción
+│   └── views/             # Vistas Blade (si se usan)
+│
+├── routes/
+│   ├── web.php            # Rutas web
+│   └── api.php            # Rutas API
+│
+├── storage/               # Logs y archivos temporales
+├── tests/                 # Pruebas unitarias y funcionales
+├── .env.example           # Variables de entorno de ejemplo
+├── artisan                # Consola de comandos Laravel
+├── composer.json          # Dependencias PHP
+├── package.json           # Dependencias JS
+└── README.md              # Este archivo
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## ⚙️ Requisitos del sistema
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- PHP 8.2 o superior
+- Laravel 12
+- Node.js 18+ y npm/pnpm
+- Composer
+- Base de datos MySQL/PostgreSQL
+- Credenciales de acceso a la API de Factus (pedir directamente a Halltec)
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## 🔧 Instalación del proyecto
 
-## Contributing
+```bash
+# 1. Clona este repositorio
+git clone https://github.com/carluis-berrocal/reto-factus
+cd tu-repo
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# 2. Instala dependencias PHP y JS
+composer install
+npm install && npm run dev
 
-## Code of Conduct
+# 3. Copia archivo de entorno y genera clave
+cp .env.example .env
+php artisan key:generate
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# 4. Configura tu base de datos y credenciales de Factus en el archivo .env
 
-## Security Vulnerabilities
+# 5. Ejecuta migraciones
+php artisan migrate --seed
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# 6. Inicia el servidor de desarrollo
+php artisan serve
+```
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 🔐 Autenticación con Factus (OAuth2)
+
+Este sistema implementa la autenticación OAuth2 para conectarse con la API de Factus.  
+Para obtener tus credenciales (CLIENT_ID y CLIENT_SECRET), debes solicitarlas directamente a la empresa [Halltec](https://halltec.co/).
+
+Una vez las tengas, configúralas en tu archivo `.env`:
+
+```env
+FACTUS_CLIENT_ID=tu_client_id
+FACTUS_CLIENT_SECRET=tu_client_secret
+FACTUS_USERNAME=tu_usuario
+FACTUS_PASSWORD=tu_contraseña
+FACTUS_API_URL=https://api-sandbox.factus.com.co/
+```
+
+---
+
+## 🧪 Módulo de pruebas (Factus Test)
+
+Incluye una herramienta tipo POSTMAN desde la cual puedes enviar peticiones manuales a los distintos endpoints de Factus, ideal para desarrolladores o testers que quieran verificar respuestas de forma visual.
+
+---
+
+## 📄 Módulo de Facturación
+
+Este es el núcleo del sistema:
+
+- Ver listado de facturas electrónicas en tiempo real
+- Filtro por fecha, cliente, número de factura, etc.
+- Visualización de detalles en PDF y XML
+- Crear nueva factura directamente desde el sistema
+
+Toda la información es consultada y enviada **directamente a los servidores de Factus**, garantizando trazabilidad y cumplimiento normativo.
+
+---
+
+## 🤝 Contribuciones
+
+Las contribuciones son bienvenidas. Puedes crear un *fork* del repositorio, hacer tus cambios en una rama y luego abrir un pull request.
+
+---
+
+## 📩 Contacto
+
+Para soporte técnico, sugerencias o reportes de bugs, puedes contactarme directamente o abrir un issue en este repositorio.
+
+---
+
+## 📄 Licencia
+
+Este proyecto se distribuye bajo licencia [MIT](LICENSE).
