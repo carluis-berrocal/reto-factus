@@ -17,7 +17,6 @@ export default function Create() {
         is_excluded: false,
         tribute_id: "",
     });
-    
 
     const handleSubmit = (e) => {
         e.preventDefault();
