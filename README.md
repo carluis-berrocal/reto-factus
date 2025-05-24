@@ -10,7 +10,7 @@ Está diseñado para conectarse e interactuar directamente con la API de [Factus
 
 - 🔐 **Autenticación OAuth2** completamente integrada con la API de Factus
 - 🧾 **Listado, búsqueda, show de facturas**, visualización de PDF y XML directamente desde Factus
-- 🛠️ **Módulo de pruebas (Factus Test)** tipo POS para simular peticiones a los endpoints
+- 🛠️ **Módulo de pruebas (Factus Test)** tipo POSTMAN para simular peticiones a los endpoints
 - 👥 Gestión local de **clientes y productos** desde tu propia base de datos
 - 🧾 **Creación de facturas electrónicas** y consumo directo de los servicios de Factus
 - 🧩 Interfaz moderna y fluida usando **React + Inertia.js**
@@ -44,7 +44,7 @@ Está diseñado para conectarse e interactuar directamente con la API de [Factus
 │   │   ├── Pages/         # Vistas React (Clientes, Facturas, Dashboard, etc.)
 │   │   └── Components/    # Componentes reutilizables en React
 │   ├── lang/              # Archivos de traducción
-│   └── views/             # Vistas Blade (si se usan)
+│   └── views/             # Vistas Blade
 │
 ├── routes/
 │   ├── web.php            # Rutas web
@@ -64,7 +64,6 @@ Está diseñado para conectarse e interactuar directamente con la API de [Factus
 ## ⚙️ Requisitos del sistema
 
 - PHP 8.2 o superior
-- Laravel 12
 - Node.js 18+ y npm/pnpm
 - Composer
 - Base de datos MySQL/PostgreSQL
