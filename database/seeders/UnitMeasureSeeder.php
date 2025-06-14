@@ -3,18 +3,25 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use App\Models\UnitMeasure;
 
 class UnitMeasureSeeder extends Seeder
 {
     public function run(): void
     {
-        DB::table('unit_measures')->insert([
-            ['code' => '70', 'name' => 'unidad'],
-            ['code' => '414', 'name' => 'kilogramo'],
-            ['code' => '449', 'name' => 'libra'],
-            ['code' => '512', 'name' => 'metro'],
-            ['code' => '874', 'name' => 'galón'],
-        ]);
+        $data = [
+            ['code' => '70',  'name' => 'Unidad'],
+            ['code' => '414', 'name' => 'Kilogramo'],
+            ['code' => '449', 'name' => 'Libra'],
+            ['code' => '512', 'name' => 'Metro'],
+            ['code' => '874', 'name' => 'Galón'],
+        ];
+
+        foreach ($data as $item) {
+            UnitMeasure::updateOrCreate(
+                ['code' => $item['code']],  // Clave única
+                ['name' => $item['name']]   // Campos a crear o actualizar
+            );
+        }
     }
 }

@@ -10,20 +10,19 @@ export default function InputField({
     onChange,
     error,
     type = "text",
-    className = "",
+    className = "",       // para el contenedor
+    inputClassName = "",  // para el input
     ...props
 }) {
     const [localError, setLocalError] = useState(error);
 
     useEffect(() => {
-        setLocalError(error); // Actualiza el error local si viene nuevo desde props
+        setLocalError(error);
     }, [error]);
 
     const handleChange = (e) => {
         const newValue = e.target.value;
         onChange(name, newValue);
-
-        // Si hay error y el usuario empieza a escribir, lo ocultamos visualmente
         if (localError && newValue !== "") {
             setLocalError(null);
         }
@@ -38,7 +37,7 @@ export default function InputField({
                 type={type}
                 value={value}
                 onChange={handleChange}
-                className="mt-1 block w-full"
+                className={`mt-1 block w-full ${inputClassName}`}
                 {...props}
             />
             {localError && <InputError message={localError} className="mt-1" />}

@@ -1,6 +1,7 @@
 import InputField from "@/Components/InputField";
 import SelectField from "@/Components/SelectField";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import { useEffect } from "react";
 import { Head, useForm, usePage, Link } from "@inertiajs/react";
 
 export default function Create() {
@@ -10,18 +11,33 @@ export default function Create() {
         code_reference: "",
         name: "",
         quantity: 0,
-        discount_rate: "",
+        discount_rate: 0,
         price: "",
-        tax_rate: "0",
-        unit_measure_id: "",
-        is_excluded: false,
-        tribute_id: "",
+        tax_rate: 0,
+        unit_measure_id: 1,
+        is_excluded: true,
+        tribute_id: 1,
     });
 
     const handleSubmit = (e) => {
         e.preventDefault();
         post(route("products.store"));
     };
+
+    useEffect(() => {
+        if (parseInt(data.tribute_id) === 1) {
+            setData((prev) => ({
+                ...prev,
+                is_excluded: true,
+                tax_rate: 0,
+            }));
+        } else {
+            setData((prev) => ({
+                ...prev,
+                is_excluded: false,
+            }));
+        }
+    }, [data.tribute_id]);
 
     return (
         <AuthenticatedLayout
@@ -44,6 +60,7 @@ export default function Create() {
                                     value={data.code_reference}
                                     onChange={setData}
                                     error={errors.code_reference}
+                                    isFocused
                                     required
                                 />
 

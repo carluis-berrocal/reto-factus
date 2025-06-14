@@ -93,16 +93,16 @@ class BillController extends Controller
             }
 
             $result = $response->json();
-            // dd($result['data']);
+            //  dd($result['data']['bill']);
+            if ($result['data']['bill']['validated'] == null) {
+                throw new \Exception('Factura Rechazada: ' . $result['data']['bill']['errors'][0]);
+            }
+            // dd($result['data']['bill']);
             return Inertia::render('Factus/Bills/Show', [
                 'bill' => $result['data'],
             ]);
         } catch (\Exception $e) {
-            return Inertia::render('Factus/Bills/Index', [
-                'bills' => [],
-                'pagination' => [],
-                'error' => $e->getMessage(),
-            ]);
+            return redirect()->back()->with('error', $e->getMessage());
         }
     }
 
@@ -130,7 +130,7 @@ class BillController extends Controller
                 'identification_document_id' => $customer->identification_document_id,
                 'identification' => $customer->identification,
                 'legal_organization_id' => $customer->legal_organization_id,
-                'tribute_id' => $customer->tribute_id,
+                'tribute_id' => $customer->tribute->code,
                 'municipality_id' => $customer->municipality_id,
                 'dv' => $customer->dv,
                 'names' => $customer->names,
@@ -155,7 +155,7 @@ class BillController extends Controller
                     'tax_rate' => $productModel->tax_rate,
                     'unit_measure_id' => $productModel->unitMeasure->code,
                     'is_excluded' => $productModel->is_excluded,
-                    'tribute_id' => $productModel->tribute_id,
+                    'tribute_id' => $productModel->productTribute->code,
                     'standard_code_id' => 1,
                 ];
             }
@@ -195,6 +195,20 @@ class BillController extends Controller
         }
     }
 
+    public function destroy($reference_code)
+    {
+        try {
+            $response = $this->factusService->request('delete', "v1/bills/destroy/reference/{$reference_code}");
+
+            if (!$response->successful()) {
+                throw new \Exception('Error al eliminar la factura: ' . $response->json()['message']);
+            }
+
+            return redirect()->route('bills.index')->with('success', 'Factura eliminada correctamente.');
+        } catch (\Exception $e) {
+            return redirect()->route('bills.index')->with('error', $e->getMessage());
+        }
+    }
 
     public function downloadPdf($number)
     {
@@ -219,11 +233,7 @@ class BillController extends Controller
                 ->header('Content-Disposition', 'inline; filename="' . $fileName . '"');
         } catch (\Exception $e) {
 
-            return Inertia::render('Factus/Bills/Index', [
-                'bills' => [],
-                'pagination' => [],
-                'error' => $e->getMessage(),
-            ]);
+           return redirect()->route('bills.index')->with('error', $e->getMessage());
         }
     }
 
@@ -248,11 +258,7 @@ class BillController extends Controller
                 ->header('Content-Type', 'application/xml')
                 ->header('Content-Disposition', 'inline ; filename="' . $fileName . '"');
         } catch (\Exception $e) {
-            return Inertia::render('Factus/Bills/Index', [
-                'bills' => [],
-                'pagination' => [],
-                'error' => $e->getMessage(),
-            ]);
+            return redirect()->route('bills.index')->with('error', $e->getMessage());
         }
     }
 }

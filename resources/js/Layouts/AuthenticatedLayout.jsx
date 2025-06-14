@@ -4,31 +4,30 @@ import FlashMessage from "@/Components/FlashMessage";
 import LoadingSpinner from "@/Components/LoadingSpinner";
 import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
-import { Link, usePage, } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 import { useEffect, useState } from "react";
-import { setupAxiosInterceptor } from '@/utils/axiosInterceptor';
-
+import { setupAxiosInterceptor } from "@/utils/axiosInterceptor";
 
 export default function AuthenticatedLayout({ header, children }) {
-
     const user = usePage().props.auth.user;
-    const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
+    const [showingNavigationDropdown, setShowingNavigationDropdown] =
+        useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-      setupAxiosInterceptor(setIsLoading); // Configura el interceptor al montar
-      
-      return () => {
-        // Limpia los interceptores al desmontar (opcional)
-        axios.interceptors.request.clear();
-        axios.interceptors.response.clear();
-      };
+        setupAxiosInterceptor(setIsLoading); // Configura el interceptor al montar
+
+        return () => {
+            // Limpia los interceptores al desmontar (opcional)
+            axios.interceptors.request.clear();
+            axios.interceptors.response.clear();
+        };
     }, []);
 
     return (
         <div className="min-h-screen bg-gray-100 dark:bg-gray-900">
             <nav className="border-b border-gray-100 bg-white dark:border-gray-700 dark:bg-gray-800">
-            {isLoading && <LoadingSpinner />}
+                {isLoading && <LoadingSpinner />}
                 <FlashMessage />
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="flex h-16 justify-between">
@@ -46,12 +45,12 @@ export default function AuthenticatedLayout({ header, children }) {
                                 >
                                     Dashboard
                                 </NavLink>
-                                <NavLink
+                                {/* <NavLink
                                     href={route("profile.edit")}
                                     active={route().current("profile.edit")}
                                 >
                                     Perfil
-                                </NavLink>
+                                </NavLink> */}
 
                                 <NavLink
                                     href={route("customers.index")}
@@ -186,10 +185,31 @@ export default function AuthenticatedLayout({ header, children }) {
                         </ResponsiveNavLink>
 
                         <ResponsiveNavLink
-                            href={route("profile.edit")}
-                            active={route().current("profile.edit")}
+                            href={route("customers.index")}
+                            active={route().current("customers.index")}
                         >
-                            Perfil
+                            Clientes
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink
+                            href={route("products.index")}
+                            active={route().current("products.index")}
+                        >
+                            Productos
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink
+                            href={route("factus-ui.index")}
+                            active={route().current("factus-ui.index")}
+                        >
+                            Factus Test
+                        </ResponsiveNavLink>
+
+                        <ResponsiveNavLink
+                            href={route("bills.index")}
+                            active={route().current("bills.index")}
+                        >
+                            Facturas
                         </ResponsiveNavLink>
                     </div>
 
@@ -205,14 +225,14 @@ export default function AuthenticatedLayout({ header, children }) {
 
                         <div className="mt-3 space-y-1">
                             <ResponsiveNavLink href={route("profile.edit")}>
-                                Profile
+                                Perfil
                             </ResponsiveNavLink>
                             <ResponsiveNavLink
                                 method="post"
                                 href={route("logout")}
                                 as="button"
                             >
-                                Log Out
+                                Finalizar sesión
                             </ResponsiveNavLink>
                         </div>
                     </div>

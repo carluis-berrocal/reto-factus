@@ -42,12 +42,12 @@ class CustomerReferencesSeeder extends Seeder
 
         // Tributos
         $tributes = [
-            ['id' => 18, 'name' => 'IVA'],
-            ['id' => 21, 'name' => 'No aplica'],
+            ['code' => 18, 'name' => 'IVA'],
+            ['code' => 21, 'name' => 'No aplica'],
         ];
 
         foreach ($tributes as $tribute) {
-            Tribute::updateOrCreate(['id' => $tribute['id']], $tribute);
+            Tribute::updateOrCreate(['code' => $tribute['code']], $tribute);
         }
     }
 }

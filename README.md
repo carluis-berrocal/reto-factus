@@ -91,7 +91,12 @@ php artisan key:generate
 # 5. Ejecuta migraciones
 php artisan migrate --seed
 
-# 6. Inicia el servidor de desarrollo
+# 6. Sincroniza los municipios desde la API de Factus
+> Este proyecto se conecta con la API de Factus para poblar los municipios automáticamente. Asegúrate de tener configuradas las credenciales en tu archivo `.env` antes de ejecutar el comando de sincronización.
+
+php artisan municipalities:sync
+
+# 7. Inicia el servidor de desarrollo
 php artisan serve
 ```
 

@@ -1,7 +1,9 @@
 import InputField from "@/Components/InputField";
 import SelectField from "@/Components/SelectField";
+import { calculateDV } from "@/utils/helpers";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, useForm, usePage, Link } from "@inertiajs/react";
+import { useEffect } from "react";
 
 export default function Create() {
     const {
@@ -20,9 +22,9 @@ export default function Create() {
         address: "",
         email: "",
         phone: "",
-        legal_organization_id: "",
-        tribute_id: "",
-        identification_document_id: "",
+        legal_organization_id: 2,
+        tribute_id: 2,
+        identification_document_id: 3,
         municipality_id: "",
     });
 
@@ -30,6 +32,15 @@ export default function Create() {
         e.preventDefault();
         post(route("customers.store"));
     };
+
+    useEffect(() => {
+        if (data.identification) {
+            const dv = calculateDV(data.identification);
+            setData("dv", dv);
+        } else {
+            setData("dv", "");
+        }
+    }, [data.identification]);
 
     return (
         <AuthenticatedLayout
@@ -50,8 +61,8 @@ export default function Create() {
                         >
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                 {/* Campos de formulario */}
-                                 
-                                 <SelectField
+
+                                <SelectField
                                     label="Tipo de Persona"
                                     name="legal_organization_id"
                                     options={legalOrganizations}
@@ -73,6 +84,7 @@ export default function Create() {
                                     onChange={setData}
                                     error={errors.identification}
                                     required
+                                    type="number"
                                     isFocused
                                 />
                                 <InputField
@@ -81,6 +93,8 @@ export default function Create() {
                                     value={data.dv}
                                     onChange={setData}
                                     error={errors.dv}
+                                    readOnly
+                                    inputClassName="bg-gray-2100 cursor-not-allowed focus:outline-none focus:ring-0 border-gray-300"
                                 />
 
                                 <InputField
@@ -129,7 +143,6 @@ export default function Create() {
                                     error={errors.phone}
                                 />
 
-                               
                                 <SelectField
                                     label="Tipo de tributo"
                                     name="tribute_id"
@@ -137,7 +150,7 @@ export default function Create() {
                                     value={data.tribute_id}
                                     onChange={setData}
                                 />
-                               
+
                                 <SelectField
                                     label="Municipio"
                                     name="municipality_id"
@@ -161,7 +174,6 @@ export default function Create() {
                                 >
                                     Guardar
                                 </button>
-                                
                             </div>
                         </form>
                     </div>

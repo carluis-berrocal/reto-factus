@@ -2,10 +2,9 @@ import InputField from "@/Components/InputField";
 import SelectField from "@/Components/SelectField";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, useForm, usePage, Link } from "@inertiajs/react";
-import { useState } from "react";
+import toast from 'react-hot-toast';
 import { Plus, Minus, Trash2, PlusCircle } from "lucide-react";
-import { formatCurrency } from '@/utils/helpers';
-
+import { formatCurrency } from "@/utils/helpers";
 
 export default function Create() {
     const {
@@ -112,16 +111,22 @@ export default function Create() {
 
     const totals = calculateTotals();
 
-
     const handleSubmit = (e) => {
         e.preventDefault();
+
         if (data.items.length === 0) {
-            alert(
+            toast.error(
                 "Debes agregar al menos un producto antes de crear la factura."
             );
             return;
         }
-        post(route("bills.store"));
+
+        post(route("bills.store"), {
+            onStart: () => toast.loading("Creando factura..."),
+            onSuccess: () => toast.success("Factura creada correctamente."),
+            onError: () => toast.error("Hubo un error al crear la factura."),
+            onFinish: () => toast.dismiss(), // Cierra el loading
+        });
     };
 
     return (
@@ -338,19 +343,20 @@ export default function Create() {
                                                         </div>
                                                     </td>
                                                     <td className="px-4 py-2 text-right text-gray-700 dark:text-gray-300">
-                                                        
                                                         {formatCurrency(
                                                             item.price
                                                         )}
                                                     </td>
                                                     <td className="px-4 py-2 text-right text-gray-700 dark:text-gray-300">
-                                                        
                                                         {formatCurrency(
                                                             baseTotal
                                                         )}
                                                     </td>
                                                     <td className="px-4 py-2 text-right text-gray-700 dark:text-gray-300">
-                                                        -{formatCurrency(descuento)}
+                                                        -
+                                                        {formatCurrency(
+                                                            descuento
+                                                        )}
                                                     </td>
                                                     <td className="px-4 py-2 text-right text-gray-700 dark:text-gray-300">
                                                         {formatCurrency(iva)}
