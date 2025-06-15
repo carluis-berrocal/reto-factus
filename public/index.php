@@ -1,5 +1,6 @@
 <?php
 
+dd('This is the public/index.php file.');
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 
