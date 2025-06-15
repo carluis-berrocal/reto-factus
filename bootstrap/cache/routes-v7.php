@@ -33,7 +33,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::oX2HjGE4wSkXog9P',
+            '_route' => 'generated::VPN7qyLN8AluAIWa',
           ),
           1 => NULL,
           2 => 
@@ -350,7 +350,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::Cuytsy5U0l0w1LNs',
+            '_route' => 'generated::otl26tgiHrc6Crcg',
           ),
           1 => NULL,
           2 => 
@@ -386,7 +386,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::ZivulGmxnWmS3nA2',
+            '_route' => 'generated::olNTKCeJkDmM4L3E',
           ),
           1 => NULL,
           2 => 
@@ -516,7 +516,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::lkXDJk72RSW8Hf4c',
+            '_route' => 'generated::3wo5UiugzR6480aw',
           ),
           1 => NULL,
           2 => 
@@ -756,7 +756,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::j3AHzx6RQ4FgyXtV',
+            '_route' => 'generated::GlvIuCODCgdzzBVB',
             'endpoint' => NULL,
           ),
           1 => 
@@ -1031,7 +1031,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::oX2HjGE4wSkXog9P' => 
+    'generated::VPN7qyLN8AluAIWa' => 
     array (
       'methods' => 
       array (
@@ -1060,7 +1060,7 @@ app('router')->setCompiledRoutes(
                         \'exception\' => $exception,
                     ]), status: $exception ? 500 : 200);
                 }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"00000000000004d10000000000000000";}}',
-        'as' => 'generated::oX2HjGE4wSkXog9P',
+        'as' => 'generated::VPN7qyLN8AluAIWa',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1849,7 +1849,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::j3AHzx6RQ4FgyXtV' => 
+    'generated::GlvIuCODCgdzzBVB' => 
     array (
       'methods' => 
       array (
@@ -1873,7 +1873,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::j3AHzx6RQ4FgyXtV',
+        'as' => 'generated::GlvIuCODCgdzzBVB',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2277,7 +2277,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::Cuytsy5U0l0w1LNs' => 
+    'generated::otl26tgiHrc6Crcg' => 
     array (
       'methods' => 
       array (
@@ -2298,7 +2298,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::Cuytsy5U0l0w1LNs',
+        'as' => 'generated::otl26tgiHrc6Crcg',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2352,7 +2352,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::ZivulGmxnWmS3nA2' => 
+    'generated::olNTKCeJkDmM4L3E' => 
     array (
       'methods' => 
       array (
@@ -2373,7 +2373,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::ZivulGmxnWmS3nA2',
+        'as' => 'generated::olNTKCeJkDmM4L3E',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2693,7 +2693,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::lkXDJk72RSW8Hf4c' => 
+    'generated::3wo5UiugzR6480aw' => 
     array (
       'methods' => 
       array (
@@ -2714,7 +2714,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::lkXDJk72RSW8Hf4c',
+        'as' => 'generated::3wo5UiugzR6480aw',
       ),
       'fallback' => false,
       'defaults' => 
